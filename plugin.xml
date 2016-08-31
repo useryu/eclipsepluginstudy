@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="我的视图目录"
+            id="com.fisher.testplugin">
+      </category>
+      <view
+            name="我的视图"
+            icon="icons/sample.gif"
+            category="com.fisher.testplugin"
+            class="com.fisher.testplugin.views.SampleView"
+            id="com.fisher.testplugin.views.SampleView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.fisher.testplugin.handlers.SampleHandler"
+            commandId="com.fisher.testplugin.commands.sampleCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.fisher.testplugin.commands.sampleCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+6">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="com.fisher.testplugin.menus.sampleMenu"
+               label="菜单1"
+               mnemonic="M">
+            <command
+                  commandId="com.fisher.testplugin.commands.sampleCommand"
+                  id="com.fisher.testplugin.menus.sampleCommand"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="com.fisher.testplugin.toolbars.sampleToolbar">
+            <command
+                  commandId="com.fisher.testplugin.commands.sampleCommand"
+                  icon="icons/sample.gif"
+                  id="com.fisher.testplugin.toolbars.sampleCommand"
+                  tooltip="Say hello world 1">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="com.fisher.testplugin.commands.category"
+            name="fisher">
+      </category>
+      <command
+            categoryId="com.fisher.testplugin.commands.category"
+            id="com.fisher.testplugin.commands.sampleCommand"
+            name="我的命令">
+      </command>
+   </extension>
+   <actionSet id="com.fisher.testplugin" label="Address book" visible="true">      
+   </actionSet>
+   
+   <extension
+         id="com.fisher.testplugin"
+         name="DataView"
+         point="org.eclipse.ui.perspectiveExtensions"> 
+        <perspectiveExtension 
+            targetID="org.eclipse.ui.resourcePerspective">
+           <view
+                 id="com.fisher.testplugin.views.SampleView"
+                 minimized="false"
+                 relationship="stack"
+                 relative="org.eclipse.ui.views.TaskList"
+                 visible="true">
+           </view> 
+        </perspectiveExtension> 
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.fisher.testplugin.ResourceManagerPerspectiveFactory"
+            id="com.fisher.testplugin.perspective1"
+            name="My Resource Manager">
+      </perspective>
+   </extension> 
+   
+</plugin>
